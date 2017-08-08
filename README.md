@@ -71,7 +71,7 @@ This will run tests, package the plugin, and run the bamboo server itself on por
                 ]
             }
             ```
-            ![Policy Creation](../DocumentationImages/IamPolicy)
+            ![Policy Creation](../master/DocumentationImages/IamPolicy)
         * Validate the policy and create it
         * Navigate back to the permissions window from before
         * Enter the name of your policy into the search bar and click the refresh button
