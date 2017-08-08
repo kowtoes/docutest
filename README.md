@@ -39,7 +39,7 @@ This will run tests, package the plugin, and run the bamboo server itself on por
 * Click the create button
 * Add a new user
 	* Details - choose a name for this user and select programmatic access
-    ![User Creation](../master/DocumentationImages/UserCreation.png)
+    ![User Creation](../master/DocumentationImages/UserDetails.png)
 
 	* Permissions - select attach existing policies directly and click the "Create policy" button, opening a new window/tab
     	* In the Create policy page click the select button under "Create Your Own Policy"
@@ -172,6 +172,8 @@ With your AWS account and Bamboo Server setup complete, the plugin task is ready
             * It isn't possible to vary agents per instance across a single fleet, but this would work across multiple fleets by varying the number of agents per instance in the User data section. The plugin doesn't support multiple fleets, so one-time spot requests may better suit your needs if you don't plan on manually modifying the target capacity of a Fleet.  
         * For 'Allocation strategy', 'Network','Availability Zone', and 'Maximum price' the default values are sufficient, but choose whatever best suits your needs.
         * Click the 'Next' button when finished
+        ![Fleet Creation Step 1](../master/DocumentationImages/FleetCreation1.png)
+
     * Step 2: Configure
         * Additional configuration settings may be specified here. The ones required for the plugin to work 'User data' and 'Security groups'
         * Under 'User data' copy and paste the user data script from the Register and Monitor Spot Fleet Bamboo task.
@@ -181,9 +183,12 @@ With your AWS account and Bamboo Server setup complete, the plugin task is ready
             * If your security group is not there, ensure you are in the same region it was created
         * If you plan on manually SSHing into these instances, create/select a key pair under 'Key pair name'
         * Click the 'review button when finished'
+    ![Fleet Creation Step 2](../master/DocumentationImages/FleetCreation2.png)
+
     * Step 3: Review
         * Review the details of the created fleet and click 'Launch' when ready
         * Copy the spot request id presented upon submitting the Fleet
+
 3. Finish 'Register and Monitor Spot Fleet' Task
     * Paste the spot fleet request ID obtained in the 'Fleet Request ID' field
     * Enter the credentials of the User created earlier on in the 'AWS User Access Key' and "AWS User Secret Key" fields
@@ -204,6 +209,8 @@ With your AWS account and Bamboo Server setup complete, the plugin task is ready
         * For 'Maximum units per scaling action' enter a positive integer that the plugin will attempt to modify the target capacity by when a scaling decision is made (subject to the rules specified above)
     * Click 'Save' when finished. If any errors are present, correct them and before proceeding.
     * Check the 'Enable plan' checkbox after saving the task
+    ![Task Creation](../master/DocumentationImages/TaskCreation.png)
+
 4. Schedule plan containing 'Register and Monitor Spot Fleet' task for automatic execution
     * Navigate to all build plans in the Bamboo server
     * Select the edit icon on the plan containing the 'Register and Monitor Spot Fleet' task
@@ -214,6 +221,8 @@ With your AWS account and Bamboo Server setup complete, the plugin task is ready
     * Configure the schedule for the task's execution
         * This is how frequently the task will attempt to scale
         * It is important to allow enough time in between task executions for new agents to install. With the default settings, at least 5 minutes should suffice
+        ![Task Scheduling](../master/DocumentationImages/TaskScheduling.png)
+
     * (Optional, but recommended) Dedicate a local agent to run this plan. The 'Register and Monitor Spot Fleet' task must be run on a local agent as it requires Bamboo components which are only available to local agents. Dedicating a local agent ensures that the task will be run quickly once it is queued.
         * Navigate to the Agents page under Bamboo Administration.
         * If desired, add a new local agent via the 'Add local agent' button
