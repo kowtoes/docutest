@@ -31,6 +31,11 @@ This will run tests, package the plugin, and run the bamboo server itself on por
 
 ## For Production Use
 
+### Read before using
+While using Spot Fleet, it is possible that you will be outbid and your instances will be terminated. Any builds running on terminated instances will not be completed.
+
+The plugin relies on fleet remote agents following the naming convention "ip-xxx-xxx-xxx-xxx.xxxxxxx.internal", i.e beginning with "ip-" and ending with ".internal". Other remote agents following the same naming conventions will conflict with the plugin, causing the conflicting agents to be removed from Bamboo. If you use other ec2 instances as remote agents, rename them before running the task.
+
 ### AWS account setup - before using the Fleet plugin for Bamboo you must set a few things up on your AWS account
 [Create/log in to your AWS account](aws.amazon.com)
 #### Create a user with the necessary permissions and credentials
@@ -230,6 +235,6 @@ With your AWS account and Bamboo Server setup complete, the plugin task is ready
         * Select the 'Dedicate agent' tab
         * Find the plan that contains the 'Register and Monitor Spot Fleet' task and click the 'Add' button to dedicate the agent to this plan   
 
-The plugin should now automatically make scaling decisions as scheduled, scaling the associate Fleet up/down as specified in the task creation screen. If the 'Terminate fleet upon completing all builds' checkbox was not checked, ensure that you cancel the fleet and terminate all associated instances when you are finished with them.
+    The plugin should now automatically make scaling decisions as scheduled, scaling the associate Fleet up/down as specified in the task creation screen. If the 'Terminate fleet upon completing all builds' checkbox was not checked, ensure that you cancel the fleet and terminate all associated instances when you are finished with them.
 
-The plugin will log successes, warnings, and errors in the build log every scaling cycle. The task will report that it has succeeded unless something unexpected has prevented it from finishing. Expected errors will be logged and will not stop task execution.       
+    The plugin will log successes, warnings, and errors in the build log every scaling cycle. The task will report that it has succeeded unless something unexpected has prevented it from finishing. Expected errors will be logged and will not stop task execution.     
