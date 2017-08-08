@@ -39,6 +39,8 @@ This will run tests, package the plugin, and run the bamboo server itself on por
 * Click the create button
 * Add a new user
 	* Details - choose a name for this user and select programmatic access
+    ![User Creation](../master/DocumentationImages/UserCreation.png)
+
 	* Permissions - select attach existing policies directly and click the "Create policy" button, opening a new window/tab
     	* In the Create policy page click the select button under "Create Your Own Policy"
         * Provide a name and description for this policy
@@ -76,9 +78,15 @@ This will run tests, package the plugin, and run the bamboo server itself on por
         * Navigate back to the permissions window from before
         * Enter the name of your policy into the search bar and click the refresh button
         * Select the policy just created by clicking on the checkbox
+        ![Policy Attachment](../master/DocumentationImages/AttachPolicy.png)
+
         * Click on the "Next: Review" button when finished
         	* Review - Ensure the policy you just created will be attached to the created user and that the AWS access type is programmatic. Click the "Create user" button when finished
+            ![Policy Review](../master/DocumentationImages/ReviewPolicy.png)
+
         	* Complete - An Access key ID and Secret access key are listed on this page. Download the csv or otherwise store these credentials in a secure location for later use
+            ![User Creation Finished](../master/DocumentationImages/UserCreationFinished.png)
+
             * If no credentials are present repeat these steps ensuring you selected programmatic access in the Details page
 #### Create a security group with the necessary ports opened
 Your security group must exist in the same region that you plan on running Fleet
@@ -98,6 +106,8 @@ The plugin supports these regions:
 3. Click the "Create Security Group" button
 4. Provide a name and description for this Security Group. Select a VPC for this group (default is fine)
 5. Allow Inbound TCP traffic on ports 22, 80, 443, 8085, 54663 with the source being specified as your bamboo server
+![Security Group](../master/DocumentationImages/SecurityGroup.png)
+
 6. Outbound traffic can be left at allowing all traffic
 7. Click the "Create" button when finished
 
@@ -115,6 +125,8 @@ Before using Fleet ensure that you can install a remote agent manually. If you c
         * The server has two addresses (URL:port) to connect with a remote agent:
         	* Bamboo Base URL, usually http(s)://(hostname):8085/<bamboo-app-context>
         	* Bamboo Broker URL, usually tcp://(hostname):54663  (if not defined otherwise)
+    ![Server Configuration](../master/DocumentationImages/BambooServerConfig.png)
+
     * Restart the Bamboo server if the broker URL or broker client URL were changed
     * Ensure the ports Bamboo uses for agent Installation, 8085 and 54663 by default, are reachable from server to agent and agent to server
     * [Troubleshooting](https://confluence.atlassian.com/bamkb/troubleshooting-remote-agents-216957427.html)
