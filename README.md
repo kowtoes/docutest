@@ -46,7 +46,7 @@ The plugin relies on fleet remote agents following the naming convention "ip-xxx
 	* Details - choose a name for this user and select programmatic access
     ![User Creation](../master/DocumentationImages/UserDetails.png)
 
-	* Permissions - select attach existing policies directly and click the "Create policy" button, opening a new window/tab
+	* Permissions - select "attach existing policies" directly and click the "Create policy" button, opening a new window/tab
     	* In the Create policy page click the select button under "Create Your Own Policy"
         * Provide a name and description for this policy
         * Copy and paste the following into the policy document:
@@ -110,19 +110,17 @@ The plugin supports these regions:
 2. Select Security Groups under the Network & Security section of the EC2 Dashboard on the left tab of the page
 3. Click the "Create Security Group" button
 4. Provide a name and description for this Security Group. Select a VPC for this group (default is fine)
-5. Allow Inbound TCP traffic on ports 22, 80, 443, 8085, 54663 with the source being specified as your bamboo server
+5. Allow Inbound TCP traffic on ports 22, 80, 443, 8085, 54663 with the source being specified as your bamboo server IP address
 ![Security Group](../master/DocumentationImages/SecurityGroup.png)
 
 6. Outbound traffic can be left at allowing all traffic
 7. Click the "Create" button when finished
 
 ### Remote Agent setup
-Before using Fleet ensure that you can install a remote agent manually. If you can manually install an ec2 instance as a remote agent first then it is likely that automatic installation of Fleet agents via User data will succeed
-
-[Remote Agent Installation Guide](https://confluence.atlassian.com/bamboo/bamboo-remote-agent-installation-guide-289276832.html)
+Before using Fleet ensure that you can install a remote agent manually. If you can manually install an ec2 instance as a remote agent first then it is likely that automatic installation of Fleet agents via User data will succeed.
 
 1. Enable support for Remote Agents
-	* Navigate to the Bamboo Agents page
+    * On the Bamboo server, click the gear icon in the top right. Select 'Agents'
 	* Enable support for Remote agents (Ensure that your Bamboo license allows for remote agents)
 2. Configure server settings for remote agent support
     * Navigate to the General configuration page under System in Bamboo administration
@@ -131,12 +129,12 @@ Before using Fleet ensure that you can install a remote agent manually. If you c
         	* Bamboo Base URL, usually http(s)://(hostname):8085/<bamboo-app-context>
         	* Bamboo Broker URL, usually tcp://(hostname):54663  (if not defined otherwise)
     ![Server Configuration](../master/DocumentationImages/BambooServerConfig.png)
-
+    * Click the 'Save' button when finished
     * Restart the Bamboo server if the broker URL or broker client URL were changed
     * Ensure the ports Bamboo uses for agent Installation, 8085 and 54663 by default, are reachable from server to agent and agent to server
     * [Troubleshooting](https://confluence.atlassian.com/bamkb/troubleshooting-remote-agents-216957427.html)
 3. Manually install a remote agent
-    * Navigate back to the Bamboo agents page
+    * Navigate back to the Bamboo agents page (Gear icon in top right corner -> Agents)
     * Click install remote agent
     * Follow the instructions on this page
         * During agent installation you should see status information on the agents page
